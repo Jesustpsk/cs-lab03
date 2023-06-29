@@ -165,7 +165,7 @@ void show_histogram_svg(vector<size_t>& bins, const size_t MAX_ASTERISK) {
         opacity += to_string(fill_opacity)[0];
         opacity += ".";
         opacity += to_string(fill_opacity)[2];
-        svg_rect(TEXT_WIDTH, top, bin_width, BIN_HEIGHT, "black", "black", opacity);
+        svg_rect(TEXT_WIDTH, top, bin_width - 50, BIN_HEIGHT, "black", "black", opacity);
         top += BIN_HEIGHT;
     }
     svg_end();
