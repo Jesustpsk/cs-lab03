@@ -39,5 +39,5 @@ int main() {
 	make_histogram(bins, numbers, bin_count);
 	cerr << '\n';
 	//show_histogram_text(bins, MAX_ASTERISK);
-	show_histogram_svg(bins);
+	show_histogram_svg(bins, MAX_ASTERISK);
 }

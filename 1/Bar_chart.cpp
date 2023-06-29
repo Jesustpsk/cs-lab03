@@ -117,18 +117,13 @@ void svg_text(double left, double baseline, string text) {
     cout << "<text x='" << left << "' y='"<< baseline << "'>" << text << "</text>";
 }
 
-void svg_rect(double x, double y, double width, double height, string stroke = "black", string fill = "black") {
-    cout << "<rect x='" << x << "' y='" << y << "' width='" << width << "' height='" << height << "' stroke='" << stroke << "' fill ='" << fill << "'/>";
+void svg_rect(double x, double y, double width, double height, string stroke = "black", string fill = "black", string fill_opacity = "1") {
+    cout << "<rect x='" << x << "' y='" << y << "' width='" << width 
+        << "' height='" << height << "' stroke='" << stroke << "' fill ='" << fill 
+        << "' fill-opacity ='" << fill_opacity << "'/>";
 }
 
 void show_histogram_svg(vector<size_t>& bins, const size_t MAX_ASTERISK) {
-    size_t max_count = 0;
-    for (size_t bin : bins) {
-        if (bin > max_count) {
-            max_count = bin;
-        }
-    }
-
     const auto IMAGE_WIDTH = 400;
     const auto IMAGE_HEIGHT = 300;
     const auto TEXT_LEFT = 20;
@@ -136,38 +131,42 @@ void show_histogram_svg(vector<size_t>& bins, const size_t MAX_ASTERISK) {
     const auto TEXT_WIDTH = 50;
     const auto BIN_HEIGHT = 30;
     const auto BLOCK_WIDTH = 10;
-
     svg_begin(IMAGE_WIDTH, IMAGE_HEIGHT);
+
+    size_t max_count = 0;
+    for (size_t i = 0; i < bins.size(); i++) {
+        if (bins[i] > max_count) {
+            max_count = bins[i];
+        }
+    }
 
     double top = 0;
     for (size_t bin : bins) {
-        if (bins[bin] < 100) {
-            svg_text(TEXT_LEFT, top + TEXT_BASELINE, " ");
-        }
-
-        if (bins[bin] < 10) {
-            svg_text(TEXT_LEFT, top + TEXT_BASELINE, " ");
-        }
-        const double bin_width = BLOCK_WIDTH * bin;
-        svg_text(TEXT_LEFT, top + TEXT_BASELINE, to_string(bin));
-        size_t height;
-        if (max_count > MAX_ASTERISK) {
-            if (bins[bin] > MAX_ASTERISK) {
-                height = MAX_ASTERISK * 1.0;
-            }
-            else {
-                height = MAX_ASTERISK * (static_cast<double>(bins[bin]) / max_count);
-            }
+        if (bin < 100 && bin > 9) {
+            svg_text(TEXT_LEFT + 5, top + TEXT_BASELINE, to_string(bin));
+        }else if (bin < 10) {
+            svg_text(TEXT_LEFT + 10, top + TEXT_BASELINE, to_string(bin));
         }
         else {
-            height = bins[bin];
+            svg_text(TEXT_LEFT, top + TEXT_BASELINE, to_string(bin));
         }
 
-        for (size_t j = 0; j < height; j++) {
-            svg_rect(TEXT_WIDTH, top, bin_width, BIN_HEIGHT);
+        double bin_width;
+        if (max_count > (IMAGE_WIDTH / 10)) {
+            bin_width = IMAGE_WIDTH * (static_cast<double>(bin) / max_count);
         }
+        else {
+            bin_width = BLOCK_WIDTH * bin;
+        }
+
+
+        double fill_opacity = static_cast<double>(bin) / static_cast<double>(max_count);
+        string opacity = "";
+        opacity += to_string(fill_opacity)[0];
+        opacity += ".";
+        opacity += to_string(fill_opacity)[2];
+        svg_rect(TEXT_WIDTH, top, bin_width, BIN_HEIGHT, "black", "black", opacity);
         top += BIN_HEIGHT;
     }
-
     svg_end();
 }

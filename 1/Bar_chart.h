@@ -4,6 +4,7 @@
 #include <time.h>
 #include <set>
 #include <string>
+#include <cmath>
 using namespace std;
 
 void generate_12x(vector <double>&);
@@ -18,5 +19,5 @@ void show_histogram_text(vector<size_t>, const size_t);
 void svg_begin(double, double);
 void svg_end();
 void svg_text(double, double, string);
-void svg_rect(double, double, double, double, string, string);
+void svg_rect(double, double, double, double, string, string, string);
 void show_histogram_svg(vector<size_t>&, const size_t);
