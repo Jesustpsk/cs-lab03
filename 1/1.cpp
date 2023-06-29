@@ -1,7 +1,7 @@
 ﻿#include <iostream>
 #include <algorithm>
 #include "Bar_chart.h"
-
+#include "test.h"
 const size_t SCREEN_WIDTH = 80;
 const size_t MAX_ASTERISK = SCREEN_WIDTH - 3 - 1;
 
@@ -35,7 +35,11 @@ int main() {
 	cerr << "\nВведите количество корзин: ";
 	cin >> bin_count;
 	vector<size_t>bins(bin_count);
-
+	/*test_allnegative(numbers);
+	test_allsame(numbers);
+	test_emptyarr(numbers);
+	test_minmax();
+	test_onenum(numbers);*/
 	make_histogram(bins, numbers, bin_count);
 	cerr << '\n';
 	//show_histogram_text(bins, MAX_ASTERISK);
