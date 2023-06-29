@@ -35,11 +35,11 @@ int main() {
 	cerr << "\nВведите количество корзин: ";
 	cin >> bin_count;
 	vector<size_t>bins(bin_count);
-	/*test_allnegative(numbers);
-	test_allsame(numbers);
-	test_emptyarr(numbers);
+	test_allnegative();
+	test_allsame();
+	test_emptyarr();
 	test_minmax();
-	test_onenum(numbers);*/
+	test_onenum();
 	make_histogram(bins, numbers, bin_count);
 	cerr << '\n';
 	//show_histogram_text(bins, MAX_ASTERISK);
