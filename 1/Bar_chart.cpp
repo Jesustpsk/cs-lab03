@@ -121,7 +121,13 @@ void svg_rect(double x, double y, double width, double height, string stroke = "
     cout << "<rect x='" << x << "' y='" << y << "' width='" << width << "' height='" << height << "' stroke='" << stroke << "' fill ='" << fill << "'/>";
 }
 
-void show_histogram_svg(vector<size_t>& bins) {
+void show_histogram_svg(vector<size_t>& bins, const size_t MAX_ASTERISK) {
+    size_t max_count = 0;
+    for (size_t bin : bins) {
+        if (bin > max_count) {
+            max_count = bin;
+        }
+    }
 
     const auto IMAGE_WIDTH = 400;
     const auto IMAGE_HEIGHT = 300;
@@ -132,15 +138,36 @@ void show_histogram_svg(vector<size_t>& bins) {
     const auto BLOCK_WIDTH = 10;
 
     svg_begin(IMAGE_WIDTH, IMAGE_HEIGHT);
-    //svg_rect(TEXT_WIDTH, 0, bins[0] * BLOCK_WIDTH, BIN_HEIGHT);
-    //svg_text(TEXT_LEFT, TEXT_BASELINE, to_string(bins[0]));
 
     double top = 0;
     for (size_t bin : bins) {
+        if (bins[bin] < 100) {
+            svg_text(TEXT_LEFT, top + TEXT_BASELINE, " ");
+        }
+
+        if (bins[bin] < 10) {
+            svg_text(TEXT_LEFT, top + TEXT_BASELINE, " ");
+        }
         const double bin_width = BLOCK_WIDTH * bin;
         svg_text(TEXT_LEFT, top + TEXT_BASELINE, to_string(bin));
-        svg_rect(TEXT_WIDTH, top, bin_width, BIN_HEIGHT);
+        size_t height;
+        if (max_count > MAX_ASTERISK) {
+            if (bins[bin] > MAX_ASTERISK) {
+                height = MAX_ASTERISK * 1.0;
+            }
+            else {
+                height = MAX_ASTERISK * (static_cast<double>(bins[bin]) / max_count);
+            }
+        }
+        else {
+            height = bins[bin];
+        }
+
+        for (size_t j = 0; j < height; j++) {
+            svg_rect(TEXT_WIDTH, top, bin_width, BIN_HEIGHT);
+        }
         top += BIN_HEIGHT;
     }
+
     svg_end();
 }

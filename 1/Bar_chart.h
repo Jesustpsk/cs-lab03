@@ -19,4 +19,4 @@ void svg_begin(double, double);
 void svg_end();
 void svg_text(double, double, string);
 void svg_rect(double, double, double, double, string, string);
-void show_histogram_svg(vector<size_t>&);
+void show_histogram_svg(vector<size_t>&, const size_t);
