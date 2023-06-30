@@ -93,3 +93,6 @@ void test_emptyarr() {
 	else
 		assert(empty == true);
 }
+void test_opacity(string opacity) {
+
+}

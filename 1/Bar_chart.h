@@ -5,6 +5,7 @@
 #include <set>
 #include <string>
 #include <cmath>
+#include "test.h"
 using namespace std;
 
 void generate_12x(vector <double>&);
