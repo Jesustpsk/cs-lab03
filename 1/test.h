@@ -1,7 +1,8 @@
 #pragma once
 #include <cassert>
 #include "Bar_chart.h"
-
+#include <vector>
+#include <string>
 
 //void test_minmax() {
 //	double min = min_el({ 1, 2, 3 });
@@ -94,5 +95,9 @@ void test_emptyarr() {
 		assert(empty == true);
 }
 void test_opacity(string opacity) {
-
+	double op = atof(opacity.c_str());
+	bool borders_op = true;
+	if ((op >= 0) && (op <= 1)) borders_op = true;
+	else borders_op = false;
+	assert(borders_op == true);
 }

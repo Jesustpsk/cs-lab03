@@ -1,5 +1,5 @@
 #include "Bar_chart.h"
-
+#include "test.h"
 void generate_12x(vector <double> & numbers)
 {
     srand(time(0));
