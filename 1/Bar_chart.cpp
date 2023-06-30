@@ -152,12 +152,6 @@ void show_histogram_svg(vector<size_t>& bins, const size_t MAX_ASTERISK) {
         }
 
         double bin_width;
-        /*if (max_count > ((IMAGE_WIDTH - 50) / 10)) {
-            bin_width = (IMAGE_WIDTH - 50) * (static_cast<double>(bin) / max_count);
-        }
-        else {
-            bin_width = BLOCK_WIDTH * bin;
-        }*/
 
         bin_width = (IMAGE_WIDTH - 50) * (static_cast<double>(bin) / max_count);
 
