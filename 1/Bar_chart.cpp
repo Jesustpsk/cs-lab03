@@ -152,12 +152,14 @@ void show_histogram_svg(vector<size_t>& bins, const size_t MAX_ASTERISK) {
         }
 
         double bin_width;
-        if (max_count > (IMAGE_WIDTH / 10)) {
-            bin_width = IMAGE_WIDTH * (static_cast<double>(bin) / max_count);
+        /*if (max_count > ((IMAGE_WIDTH - 50) / 10)) {
+            bin_width = (IMAGE_WIDTH - 50) * (static_cast<double>(bin) / max_count);
         }
         else {
             bin_width = BLOCK_WIDTH * bin;
-        }
+        }*/
+
+        bin_width = (IMAGE_WIDTH - 50) * (static_cast<double>(bin) / max_count);
 
 
         double fill_opacity = static_cast<double>(bin) / static_cast<double>(max_count);
@@ -165,7 +167,7 @@ void show_histogram_svg(vector<size_t>& bins, const size_t MAX_ASTERISK) {
         opacity += to_string(fill_opacity)[0];
         opacity += ".";
         opacity += to_string(fill_opacity)[2];
-        svg_rect(TEXT_WIDTH, top, bin_width - 50, BIN_HEIGHT, "black", "black", opacity);
+        svg_rect(TEXT_WIDTH, top, bin_width, BIN_HEIGHT, "black", "black", opacity);
         top += BIN_HEIGHT;
     }
     svg_end();
