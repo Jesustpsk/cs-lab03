@@ -7,6 +7,7 @@ const size_t MAX_ASTERISK = SCREEN_WIDTH - 3 - 1;
 
 using namespace std;
 
+
 int main() {
 	setlocale(LC_ALL, "ru");
 
@@ -17,4 +18,8 @@ int main() {
 	cerr << '\n';
 	//show_histogram_text(bins, MAX_ASTERISK);
 	show_histogram_svg(bins, MAX_ASTERISK);
+
+
 }
+
+

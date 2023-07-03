@@ -1,4 +1,6 @@
 #pragma once
+#define CURL_STATICLIB
+#include <curl.h>
 #include <iostream>
 #include <vector>
 #include <time.h>
