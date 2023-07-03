@@ -13,10 +13,10 @@ void generate_12x(vector <double> & numbers)
     }
 }
 
-void fill_vec(vector <double>& numbers) {
+void fill_vec(istream& in, vector <double>& numbers) {
     cerr << "\nЗаполните вектор:\n";
     for (auto i = 0; i < numbers.size(); i++) {
-        cin >> numbers[i];
+        in >> numbers[i];
     }
 }
 

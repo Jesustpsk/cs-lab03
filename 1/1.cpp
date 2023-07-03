@@ -22,7 +22,7 @@ int main() {
 		generate_12x(numbers);
 	}
 	else if (answ == 'n') {
-		fill_vec(numbers);
+		fill_vec(cin, numbers);
 	}
 	else {
 		system("cls");
