@@ -22,3 +22,12 @@ void svg_end();
 void svg_text(double, double, string);
 void svg_rect(double, double, double, double, string, string, string);
 void show_histogram_svg(vector<size_t>&, const size_t);
+
+//cURL
+
+struct Input {
+	vector <double> numbers;
+	size_t bin_count;
+};
+
+Input read_input(istream& in);

@@ -167,3 +167,31 @@ void show_histogram_svg(vector<size_t>& bins, const size_t MAX_ASTERISK) {
     }
     svg_end();
 }
+
+Input read_input(istream& in) {
+    Input data;
+
+    cerr << "¬ведите количесво чисел: ";
+    size_t num_count;
+    in >> num_count;
+
+    cerr << "\n—генерировать числа? (y/n) ";
+    char answ;
+    cin >> answ;
+    if (answ == 'y') {
+        generate_12x(data.numbers);
+    }
+    else if (answ == 'n') {
+        fill_vec(in, data.numbers);
+    }
+    else {
+        system("cls");
+        cout << "Error!\n";
+        system("pause");
+    }
+
+    cerr << "\n¬ведите количество корзин: ";
+    in >> data.bin_count;
+
+    return data;
+}

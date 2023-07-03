@@ -10,37 +10,14 @@ using namespace std;
 int main() {
 	setlocale(LC_ALL, "ru");
 
-	size_t num_count;
-	cerr << "Введите количесво чисел: ";
-	cin >> num_count;
-
-	vector <double>numbers(num_count);
-	cerr << "\nСгенерировать числа? (y/n) ";
-	char answ;
-	cin >> answ;
-	if (answ == 'y') {
-		generate_12x(numbers);
-	}
-	else if (answ == 'n') {
-		fill_vec(cin, numbers);
-	}
-	else {
-		system("cls");
-		cout << "Error!\n";
-		system("pause");
-		system("cls");
-		return main();
-	}
-	size_t bin_count;
-	cerr << "\nВведите количество корзин: ";
-	cin >> bin_count;
-	vector<size_t>bins(bin_count);
+	const auto input = read_input(cin);
+	vector<size_t>bins(input.bin_count);
 	/*test_allnegative();
 	test_allsame();
 	test_emptyarr();
 	test_minmax();
 	test_onenum();*/
-	make_histogram(bins, numbers, bin_count);
+	make_histogram(bins, input.numbers, input.bin_count);
 	cerr << '\n';
 	//show_histogram_text(bins, MAX_ASTERISK);
 	show_histogram_svg(bins, MAX_ASTERISK);
