@@ -10,7 +10,7 @@ using namespace std;
 int main() {
 	setlocale(LC_ALL, "ru");
 
-	const auto input = read_input(cin);
+	const auto input = read_input(cin, true);
 	vector<size_t>bins(input.bin_count);
 	/*test_allnegative();
 	test_allsame();

@@ -30,4 +30,4 @@ struct Input {
 	size_t bin_count;
 };
 
-Input read_input(istream& in);
+Input read_input(istream& in, bool prompt);

@@ -168,14 +168,16 @@ void show_histogram_svg(vector<size_t>& bins, const size_t MAX_ASTERISK) {
     svg_end();
 }
 
-Input read_input(istream& in) {
+Input read_input(istream& in, bool prompt) {
     Input data;
 
-    cerr << "¬ведите количесво чисел: ";
+    if(prompt)
+        cerr << "¬ведите количесво чисел: ";
     size_t num_count;
     in >> num_count;
 
-    cerr << "\n—генерировать числа? (y/n) ";
+    if (prompt)
+        cerr << "\n—генерировать числа? (y/n) ";
     char answ;
     cin >> answ;
     if (answ == 'y') {
@@ -190,7 +192,8 @@ Input read_input(istream& in) {
         system("pause");
     }
 
-    cerr << "\n¬ведите количество корзин: ";
+    if (prompt)
+        cerr << "\n¬ведите количество корзин: ";
     in >> data.bin_count;
 
     return data;
