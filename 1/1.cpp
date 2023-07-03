@@ -11,11 +11,12 @@ using namespace std;
 int main(int argc, char* argv[]) {
 	setlocale(LC_ALL, "ru");
 	if (argc > 1) {
-		cerr << "argc = " << argc << '\n'
-			<< "argv: " << '\n';
-
-		for (int i = 0; i < sizeof(argv); i++) {
-			cerr << argv[i] << '\n';
+		CURL* curl = curl_easy_init();
+		if (curl) {
+			CURLcode res;
+			curl_easy_setopt(curl, CURLOPT_URL, argv[1]);
+			res = curl_easy_perform(curl);
+			curl_easy_cleanup(curl);
 		}
 	}
 

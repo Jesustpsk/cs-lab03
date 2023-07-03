@@ -18,7 +18,6 @@ struct Input {
 };
 
 
-
 void generate_12x(vector <double>&);
 void fill_vec(istream&, vector <double>&);
 
