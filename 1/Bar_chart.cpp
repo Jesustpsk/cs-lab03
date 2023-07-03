@@ -1,5 +1,7 @@
 #include "Bar_chart.h"
 #include "test.h"
+
+
 void generate_12x(vector <double> & numbers)
 {
     srand(time(0));
@@ -18,6 +20,40 @@ void fill_vec(istream& in, vector <double>& numbers) {
     for (auto i = 0; i < numbers.size(); i++) {
         in >> numbers[i];
     }
+}
+
+
+Input read_input(istream& in, bool prompt) {
+    Input data;
+
+    if (prompt)
+        cerr << "¬ведите количесво чисел: ";
+    size_t num_count;
+    in >> num_count;
+
+    data.numbers.resize(num_count);
+
+    if (prompt)
+        cerr << "\n—генерировать числа? (y/n) ";
+    char answ;
+    cin >> answ;
+    if (answ == 'y') {
+        generate_12x(data.numbers);
+    }
+    else if (answ == 'n') {
+        fill_vec(in, data.numbers);
+    }
+    else {
+        system("cls");
+        cout << "Error!\n";
+        system("pause");
+    }
+
+    if (prompt)
+        cerr << "\n¬ведите количество корзин: ";
+    in >> data.bin_count;
+
+    return data;
 }
 
 double max_el(vector <double> numbers) {
@@ -168,33 +204,3 @@ void show_histogram_svg(vector<size_t>& bins, const size_t MAX_ASTERISK) {
     svg_end();
 }
 
-Input read_input(istream& in, bool prompt) {
-    Input data;
-
-    if(prompt)
-        cerr << "¬ведите количесво чисел: ";
-    size_t num_count;
-    in >> num_count;
-
-    if (prompt)
-        cerr << "\n—генерировать числа? (y/n) ";
-    char answ;
-    cin >> answ;
-    if (answ == 'y') {
-        generate_12x(data.numbers);
-    }
-    else if (answ == 'n') {
-        fill_vec(in, data.numbers);
-    }
-    else {
-        system("cls");
-        cout << "Error!\n";
-        system("pause");
-    }
-
-    if (prompt)
-        cerr << "\n¬ведите количество корзин: ";
-    in >> data.bin_count;
-
-    return data;
-}

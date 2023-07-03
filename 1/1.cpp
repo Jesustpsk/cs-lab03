@@ -12,11 +12,7 @@ int main() {
 
 	const auto input = read_input(cin, true);
 	vector<size_t>bins(input.bin_count);
-	/*test_allnegative();
-	test_allsame();
-	test_emptyarr();
-	test_minmax();
-	test_onenum();*/
+
 	make_histogram(bins, input);
 	cerr << '\n';
 	//show_histogram_text(bins, MAX_ASTERISK);

@@ -8,8 +8,20 @@
 
 using namespace std;
 
+//cURL
+
+struct Input {
+	vector <double> numbers;
+	size_t bin_count;
+};
+
+
+
 void generate_12x(vector <double>&);
 void fill_vec(istream&, vector <double>&);
+
+Input read_input(istream& in, bool prompt);
+
 double max_el(vector <double>);
 double min_el(vector <double>);
 void make_histogram(vector <size_t>&, const Input&);
@@ -23,11 +35,5 @@ void svg_text(double, double, string);
 void svg_rect(double, double, double, double, string, string, string);
 void show_histogram_svg(vector<size_t>&, const size_t);
 
-//cURL
 
-struct Input {
-	vector <double> numbers;
-	size_t bin_count;
-};
 
-Input read_input(istream& in, bool prompt);
