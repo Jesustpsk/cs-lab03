@@ -10,22 +10,13 @@ using namespace std;
 
 int main(int argc, char* argv[]) {
 	setlocale(LC_ALL, "ru");
+	Input input;
 	if (argc > 1) {
-		CURL* curl = curl_easy_init();
-		if (curl) {
-			CURLcode res;
-			curl_easy_setopt(curl, CURLOPT_URL, argv[1]);
-			res = curl_easy_perform(curl);
-			if (res != CURLE_OK) {
-				cerr << "Error: " << curl_easy_strerror(res);
-				exit(1);
-			}
-			curl_easy_cleanup(curl);
-		}
+		input = download(argv[1]);
 	}
-
-	return 0;
-	const auto input = read_input(cin, true);
+	else {
+		input = read_input(cin, true);
+	}
 	vector<size_t>bins(input.bin_count);
 
 	make_histogram(bins, input);

@@ -2,6 +2,27 @@
 #include "test.h"
 
 
+Input download(const string& address)
+{
+    stringstream buffer;
+    CURL* curl = curl_easy_init();
+    if (curl) {
+        CURLcode res;
+        curl_easy_setopt(curl, CURLOPT_URL, address.c_str());
+        res = curl_easy_perform(curl);
+        
+        if (res != CURLE_OK) {
+            cerr << "Error: " << curl_easy_strerror(res);
+            exit(1);
+        }
+        else {
+            buffer << res;
+        }
+        curl_easy_cleanup(curl);
+    }
+    return read_input(buffer, false);
+}
+
 void generate_12x(vector <double> & numbers)
 {
     srand(time(0));

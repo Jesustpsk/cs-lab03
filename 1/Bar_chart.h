@@ -7,7 +7,7 @@
 #include <set>
 #include <string>
 #include <cmath>
-
+#include <sstream>
 using namespace std;
 
 //cURL
@@ -16,7 +16,7 @@ struct Input {
 	vector <double> numbers;
 	size_t bin_count;
 };
-
+Input download(const string&);
 
 void generate_12x(vector <double>&);
 void fill_vec(istream&, vector <double>&);
