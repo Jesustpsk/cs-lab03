@@ -2,6 +2,12 @@
 #include "test.h"
 
 
+size_t write_data(void* contents, size_t size, size_t nmemb, stringstream* buffer) {
+    size_t numBytes = size * nmemb;
+    buffer->write(static_cast<char*>(contents), numBytes);
+    return numBytes;
+}
+
 Input download(const string& address)
 {
     stringstream buffer;
@@ -9,14 +15,13 @@ Input download(const string& address)
     if (curl) {
         CURLcode res;
         curl_easy_setopt(curl, CURLOPT_URL, address.c_str());
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &buffer);
         res = curl_easy_perform(curl);
         
         if (res != CURLE_OK) {
             cerr << "Error: " << curl_easy_strerror(res);
             exit(1);
-        }
-        else {
-            buffer << res;
         }
         curl_easy_cleanup(curl);
     }
@@ -53,22 +58,7 @@ Input read_input(istream& in, bool prompt) {
     in >> num_count;
 
     data.numbers.resize(num_count);
-
-    if (prompt)
-        cerr << "\n—генерировать числа? (y/n) ";
-    char answ;
-    cin >> answ;
-    if (answ == 'y') {
-        generate_12x(data.numbers);
-    }
-    else if (answ == 'n') {
-        fill_vec(in, data.numbers);
-    }
-    else {
-        system("cls");
-        cout << "Error!\n";
-        system("pause");
-    }
+    fill_vec(in, data.numbers);
 
     if (prompt)
         cerr << "\n¬ведите количество корзин: ";

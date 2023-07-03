@@ -16,6 +16,7 @@ struct Input {
 	vector <double> numbers;
 	size_t bin_count;
 };
+size_t write_data(void* contents, size_t size, size_t nmemb, stringstream* buffer);
 Input download(const string&);
 
 void generate_12x(vector <double>&);
