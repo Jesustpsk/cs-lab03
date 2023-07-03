@@ -17,7 +17,7 @@ int main() {
 	test_emptyarr();
 	test_minmax();
 	test_onenum();*/
-	make_histogram(bins, input.numbers, input.bin_count);
+	make_histogram(bins, input);
 	cerr << '\n';
 	//show_histogram_text(bins, MAX_ASTERISK);
 	show_histogram_svg(bins, MAX_ASTERISK);

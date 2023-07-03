@@ -42,21 +42,21 @@ double min_el(vector <double> numbers) {
     return min;
 }
 
-void make_histogram(vector <size_t>& bins, vector<double> numbers, size_t bin_count) {
-    double bin_size = (max_el(numbers) - min_el(numbers)) / bin_count;
+void make_histogram(vector <size_t>& bins, const Input& data) {
+    double bin_size = (max_el(data.numbers) - min_el(data.numbers)) / data.bin_count;
 
-    for (size_t i = 0; i < numbers.size(); i++) {
+    for (size_t i = 0; i < data.numbers.size(); i++) {
         bool found = false;
-        for (size_t j = 0; (j < bin_count - 1) && !found; j++) {
-            auto lo = min_el(numbers) + j * bin_size;
-            auto hi = min_el(numbers) + (j + 1) * bin_size;
-            if ((lo <= numbers[i]) && (numbers[i] < hi)) {
+        for (size_t j = 0; (j < data.bin_count - 1) && !found; j++) {
+            auto lo = min_el(data.numbers) + j * bin_size;
+            auto hi = min_el(data.numbers) + (j + 1) * bin_size;
+            if ((lo <= data.numbers[i]) && (data.numbers[i] < hi)) {
                 bins[j]++;
                 found = true;
             }
         }
         if (!found) {
-            bins[bin_count - 1]++;
+            bins[data.bin_count - 1]++;
         }
     }
 }
